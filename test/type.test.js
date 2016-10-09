@@ -46,7 +46,7 @@ describe('type', () => {
 
 describe('is', () => {
     it('undefined is undefined', () => {
-        expect(isUndef(undefined)).to.be.ok
+        expect(type(undefined)).to.be.ok
     })
     it('null is null', () => {
         expect(isNull(null)).to.be.ok
