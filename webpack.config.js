@@ -1,7 +1,7 @@
 let webpack = require('webpack'),
     path = require('path'),
     libName = 'type',
-    outputFile,
+    outputFile =  libName + '.js',
     plugins = [],
     uglifyJs = webpack.optimize.UglifyJsPlugin,
     env = process.env.NODE_ENV
@@ -10,12 +10,7 @@ if (env === 'pro') {
     plugins.push(new uglifyJs({
         minimize: true
     }))
-    outputFile = libName + '.min.js'
-} else {
-    outputFile = libName + '.js'
 }
-
-console.log(__dirname)
 
 let config = {
     entry: __dirname + '/src/type.js',
