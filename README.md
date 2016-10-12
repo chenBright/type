@@ -2,6 +2,8 @@
 
 a mini module to analyze variable type（一个用于判断数据类型的模块）
 
+[github][4]
+
 [![npm](https://img.shields.io/badge/node-%3E%3D6.7.0-brightgreen.svg)]() [![Scrutinizer Build](https://img.shields.io/scrutinizer/build/g/filp/whoops.svg?maxAge=2592000)]() [![npm](https://img.shields.io/badge/release-1.0.0-brightgreen.svg)]()  [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
 
 ```javascript
@@ -227,3 +229,4 @@ type.isObj({})     // true
 [1]: https://github.com/chenBright
 [2]: https://github.com/chenBright/type/issues
 [3]: https://github.com/chenBright/type/blob/master/CHANGELOG.md
+[4]: https://github.com/chenBright/type#typeiserrvariable
