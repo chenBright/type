@@ -1,8 +1,11 @@
 {
   "ecmaFeatures": {
     "globalReturn": true,
-    "modules": true
+    "modules": true,
+    "regexYFlag": true,
+    "regexUFlag": true
   },
+  "extends": "airbnb-base/legacy",
   "env": {
     "browser": true,
     "es6": true,
@@ -23,5 +26,8 @@
   "parser": "babel-eslint",
   "plugins": [],
   "rules": {
+    linebreak-style: 0,
+    "one-var": 0,
+    "semi": [2, "never"]
   }
 }
