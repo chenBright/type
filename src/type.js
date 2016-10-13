@@ -6,7 +6,12 @@
 
 let toString = Object.prototype.toString,
   isArray = Array.isArray,
-  type = variable => toString.call(variable).slice(8, -1).toLowerCase(),
+  type = variable => {
+    if (isNaN(variable)) {
+      return 'nan'
+    }
+    return toString.call(variable).slice(8, -1).toLowerCase()
+  },
   is = {
     // 判断是否为undefined
     isUndef(variable) {
