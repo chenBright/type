@@ -7,10 +7,14 @@
 let toString = Object.prototype.toString,
   isArray = Array.isArray,
   type = variable => {
-    if (isNaN(variable)) {
+    let type = toString.call(variable).slice(8, -1).toLowerCase()
+      // 传入isNaN参数只要不是数字，就会返回true
+      // 在NaN上调用toString会返回[Object NaN]
+      // 当两者都确定时，就可以确定是NaN
+    if (isNaN(variable) && type === 'number') {
       return 'nan'
     }
-    return toString.call(variable).slice(8, -1).toLowerCase()
+    return type
   },
   is = {
     // 判断是否为undefined
