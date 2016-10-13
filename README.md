@@ -78,6 +78,8 @@ type(new Date)      // 'date'
 type(/type/)        // 'regexp'
 
 type(new Error)     // 'error'
+
+type(NaN)           // 'nan'
 ```
 
 甚至传入`undefined`和`null`都可以正确返回，不过用处不大。
