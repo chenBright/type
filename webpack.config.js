@@ -25,11 +25,7 @@ let config = {
     module: {
         loaders: [{
             test: /\.js$/,
-            loader: 'babel',
-            exclude: /node_modules/
-        }, {
-            test: /\.js$/,
-            loader: 'eslint-loader',
+            loaders: ['babel', 'eslint-loader'],
             exclude: /node_modules/
         }]
     },
