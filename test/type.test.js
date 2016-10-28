@@ -7,11 +7,13 @@ let type = require('../src/type'),
     isNum,
     isBool,
     isArr,
+    isArrLike,
     isFun,
     isDate,
     isReg,
     isErr,
-    isObj
+    isObj,
+    isWin
   } = type
 
 describe('type', () => {
@@ -48,37 +50,49 @@ describe('type', () => {
 })
 
 describe('is', () => {
-  it('undefined is undefined', () => {
+  it('undefined', () => {
     expect(type(undefined)).to.be.ok
   })
-  it('null is null', () => {
+  it('null', () => {
     expect(isNull(null)).to.be.ok
   })
-  it('\'is\' is string', () => {
+  it('string', () => {
     expect(isStr('is')).to.be.ok
   })
-  it('1 is number', () => {
+  it('number', () => {
     expect(isNum(1)).to.be.ok
   })
-  it('true is boolean', () => {
+  it('boolean', () => {
     expect(isBool(true)).to.be.ok
   })
-  it('[] is array', () => {
+  it('array', () => {
     expect(isArr([])).to.be.ok
   })
-  it('function(){} is function', () => {
+  it('function', () => {
     expect(isFun(function() {})).to.be.ok
   })
-  it('new Date is date', () => {
+  it('date', () => {
     expect(isDate(new Date)).to.be.ok
   })
-  it('/is/ is regExp', () => {
+  it('regExp', () => {
     expect(isReg(/is/)).to.be.ok
   })
-  it('new Error is error', () => {
+  it('error', () => {
     expect(isErr(new Error)).to.be.ok
   })
-  it('{} is object', () => {
+  it('object', () => {
     expect(isObj({})).to.be.ok
+  })
+  it('window', () => {
+    expect(isObj({})).to.be.ok
+  })
+  // in node, the global variable isn't window
+  // it('window', () => {
+  //   expect(isWin(window)).to.be.ok
+  // })
+  it('isArrayLike', () => {
+    expect(isArrLike({length: 0})).to.be.ok
+    expect(isArrLike(arguments)).to.be.ok
+    expect(isArrLike([])).to.be.ok
   })
 })

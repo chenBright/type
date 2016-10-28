@@ -41,6 +41,22 @@ let toString = Object.prototype.toString,
     isArr(variable) {
       return isArray(variable)
     },
+    // 判断是否为类数组对象
+    // 参考jQuery中isArrayLike的实现
+    isArrLike(variable) {
+      // 如果obj非null、undefined等，有length属性，则length等于obj.length
+      // 否则，length为false
+      var length = !!variable && 'length' in variable && variable.length,
+        objType = type(variable)
+      if (objType === 'function' || objType === 'window') {
+        return false
+      }
+      // obj本身是数组，则返回true
+      // obj不是数组，但有length属性且为0，例如{length : 0}，则返回true
+      // obj不是数组,但有length属性且为整数数值，obj[length - 1]存在，则返回true
+      return objType === 'array' || length === 0 ||
+        typeof length === "number" && length > 0 && (length - 1) in variable
+    },
     // 判断是否为函数
     isFun(variable) {
       return type(variable) === 'function'
@@ -64,6 +80,10 @@ let toString = Object.prototype.toString,
     // 判断是否为Object类型
     isObj(variable) {
       return type(variable) === 'object'
+    },
+    // 判断是否为window对象
+    isWin(variable) {
+      return type(variable) === 'window'
     }
   }
 

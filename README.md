@@ -23,7 +23,7 @@ a mini module to analyze variable type（一个用于判断数据类型的模块
 
 传统用法和UMD都需要使用构建后的在dist / type.js文件，构建方法：
 
-```
+```bash
 // 第一次使用，需要先安装依赖
 npm imstall
 
