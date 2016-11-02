@@ -159,6 +159,24 @@ type.isBool(false)     // true
 type.isArr([])     // true
 ```
 
+### type.isArrLike(variable)
+
+判断被传入的参数是否为类数组对象
+
+- variable {any type}  任意类型的变量
+- return {Boolean} true，则表示variable是类数组对象；false，则表示variable不是类数组对象
+
+```javascript
+type.isArrLike([])               // true
+type.isArrLike({length : 0})     // true
+type.isArrLike($('.node'))       // true
+type.isArrLike(document.getElementsByClassName('node'))       // true
+(function args() {
+    return type.isArrLike(arguments)
+})()                             // true
+
+```
+
 ### type.isFun(variable)
 
 判断被传入的参数是否为函数

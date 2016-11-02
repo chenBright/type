@@ -7,14 +7,14 @@
 let toString = Object.prototype.toString,
   isArray = Array.isArray,
   type = variable => {
-    let type = toString.call(variable).slice(8, -1).toLowerCase()
+    let ty = toString.call(variable).slice(8, -1).toLowerCase()
       // 传入isNaN参数只要不是数字，就会返回true
       // 在NaN上调用toString会返回[Object NaN]
       // 当两者都确定时，就可以确定是NaN
-    if (isNaN(variable) && type === 'number') {
+    if (isNaN(variable) && ty === 'number') {
       return 'nan'
     }
-    return type
+    return ty
   },
   is = {
     // 判断是否为undefined
@@ -55,7 +55,7 @@ let toString = Object.prototype.toString,
       // obj不是数组，但有length属性且为0，例如{length : 0}，则返回true
       // obj不是数组,但有length属性且为整数数值，obj[length - 1]存在，则返回true
       return objType === 'array' || length === 0 ||
-        typeof length === "number" && length > 0 && (length - 1) in variable
+        (typeof length === 'number' && length > 0 && (length - 1) in variable)
     },
     // 判断是否为函数
     isFun(variable) {
