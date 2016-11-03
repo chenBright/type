@@ -13,7 +13,8 @@ let type = require('../src/type'),
     isReg,
     isErr,
     isObj,
-    isWin
+    isWin,
+    isPlainObject
   } = type
 
 describe('type', () => {
@@ -54,45 +55,54 @@ describe('is', () => {
     expect(type(undefined)).to.be.ok
   })
   it('null', () => {
-    expect(isNull(null)).to.be.ok
+    expect(isNull(null)).to.be.true
   })
   it('string', () => {
-    expect(isStr('is')).to.be.ok
+    expect(isStr('is')).to.be.true
   })
   it('number', () => {
-    expect(isNum(1)).to.be.ok
+    expect(isNum(1)).to.be.true
   })
   it('boolean', () => {
-    expect(isBool(true)).to.be.ok
+    expect(isBool(true)).to.be.true
   })
   it('array', () => {
-    expect(isArr([])).to.be.ok
+    expect(isArr([])).to.be.true
   })
   it('function', () => {
-    expect(isFun(function() {})).to.be.ok
+    expect(isFun(function() {})).to.be.true
   })
   it('date', () => {
-    expect(isDate(new Date)).to.be.ok
+    expect(isDate(new Date)).to.be.true
   })
   it('regExp', () => {
-    expect(isReg(/is/)).to.be.ok
+    expect(isReg(/is/)).to.be.true
   })
   it('error', () => {
-    expect(isErr(new Error)).to.be.ok
+    expect(isErr(new Error)).to.be.true
   })
   it('object', () => {
-    expect(isObj({})).to.be.ok
+    expect(isObj({})).to.be.true
   })
   it('window', () => {
-    expect(isObj({})).to.be.ok
+    expect(isObj({})).to.be.true
   })
   // in node, the global variable isn't window
   // it('window', () => {
-  //   expect(isWin(window)).to.be.ok
+  //   expect(isWin(window)).to.be.true
   // })
   it('isArrayLike', () => {
-    expect(isArrLike({length: 0})).to.be.ok
-    expect(isArrLike(arguments)).to.be.ok
-    expect(isArrLike([])).to.be.ok
+    expect(isArrLike({length: 0})).to.be.true
+    expect(isArrLike(arguments)).to.be.true
+    expect(isArrLike([])).to.be.true
+  })
+  it('isPlainObject', () => {
+    function Fun() {
+      this.a = 1
+    }
+    expect(type.isPlainObject({length: 0})).to.be.true
+    expect(type.isPlainObject(Object.create(null))).to.be.true
+    expect(type.isPlainObject(new Object())).to.be.true
+    expect(type.isPlainObject(new Fun())).to.be.false
   })
 })

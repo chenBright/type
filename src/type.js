@@ -5,13 +5,15 @@
  */
 
 let toString = Object.prototype.toString,
+  getProto = Object.getPrototypeOf,
+  hasOwn = Object.prototype.hasOwnProperty,
   isArray = Array.isArray,
   type = variable => {
     let ty = toString.call(variable).slice(8, -1).toLowerCase()
       // 传入isNaN参数只要不是数字，就会返回true
       // 在NaN上调用toString会返回[Object NaN]
       // 当两者都确定时，就可以确定是NaN
-    if (isNaN(variable) && ty === 'number') {
+    if (ty === 'number' && isNaN(variable)) {
       return 'nan'
     }
     return ty
@@ -84,6 +86,27 @@ let toString = Object.prototype.toString,
     // 判断是否为window对象
     isWin(variable) {
       return type(variable) === 'window'
+    },
+    isPlainObject(variable) {
+      // variable为null、undefined
+      // 或者variable类型不是object，
+      // 则返回false
+      if (!variable || this.isObj()) {
+        return false
+      }
+      // 获取原型(prototype)
+      let proto = getProto(variable)
+      // 当variable是由Object.create(null)创建时，
+      // variable的原型（prototype）为null
+      if (this.isNull(proto)) {
+        return true
+      }
+      // 如果原型上有constructor属性，则获取construvtor
+      // 如果没有constructor，则为false
+      let ctor = hasOwn.call(proto, 'constructor') && proto.constructor
+      // constructor为函数且是Object对象，则返回true
+      // 否则，返回false
+      return type(ctor) === 'function' && ctor === Object
     }
   }
 

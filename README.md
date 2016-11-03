@@ -232,6 +232,19 @@ type.isErr(new Error)     // true
 type.isObj({})     // true
 ```
 
+### type.isPlainObject(variable)
+
+判断被传入的参数是否为“纯粹”的对象，即指那些用对象直接量、new Object()或者Object.create(null)创建的对象
+
+- variable {any type}  任意类型的变量
+- return {Boolean} true，则表示variable是“纯粹”的对象型；false，则表示variable不是“纯粹”的对象
+
+```javascript
+type.isPlainObject({length: 0})             // true
+type.isPlainObject(Object.create(null))     // true
+type.isPlainObject(new Object())            // true
+```
+
 ## 贡献者
 
 - [chenBright][1]
